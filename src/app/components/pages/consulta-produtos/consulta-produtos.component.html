@@ -6,24 +6,28 @@
 
         <div class="mb-3">
           <label for="consultaNome" class="form-label">Nome do Produto</label>
-          <input formControlName="nome" type="text" class="form-control" id="consultaNome" placeholder="Digite o nome do produto">
-
+          <input type="text" formControlName="nome" class="form-control" id="consultaNome" placeholder="Digite o nome do produto">
+       
           <span class="text-danger" *ngIf="f['nome'].touched && f['nome'].invalid">
-            <span *ngIf="f['nome']?.hasError('required')">Por favor informe o nome do produto</span>
-            <span *ngIf="f['nome']?.hasError('minlength')">Por favor informe o nome do produto com pelo menos 3 caracteres</span>
+            <span *ngIf="f['nome']?.hasError('required')">  
+              Por favor, informe o nome do produto que deseja pesquisar.
+            </span>
+            <span *ngIf="f['nome']?.hasError('minlength')">  
+              Por favor, informe o nome do produto com pelo menos 3 caracteres.
+            </span>
           </span>
-          
+       
         </div>
         <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Pesquisar</button>
-      </form>
 
+      </form>
     </div>
 
     <div *ngIf="mensagem" class="mt-4 alert alert-success alert-dismissible fade show" role="alert">
       <strong> {{ mensagem }} </strong>
       <button (click)="mensagem = ''" type="button" class="btn-close" aria-label="Close"></button>
     </div>
-
+  
     <div *ngIf="produtos.length > 0" class="card shadow p-4 mt-4">
       <h5 class="card-title">Listagem de Produtos</h5>
       <table class="table table-striped">
@@ -32,17 +36,25 @@
             <th>Nome</th>
             <th>Preço</th>
             <th>Quantidade</th>
+            <th>Total</th>
+            <th>Categoria</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let produto of produtos">
-            <td>{{ produto.nome }}</td>
-            <td>{{ produto.preco }}</td>
-            <td>{{ produto.quantidade }}</td>
+          <tr *ngFor="let p of produtos">
+            <td>{{ p.nome | uppercase }}</td>
+            <td>{{ p.preco | currency: 'BRL' }}</td>
+            <td>{{ p.quantidade }}</td>
+            <td>{{ p.preco * p.quantidade | currency: 'BRL' }}</td>
+            <td>{{ p.categoria.nome | uppercase }}</td>
             <td>
-              <button class="btn btn-primary btn-sm me-1">Alterar</button>
-              <button class="btn btn-danger btn-sm">Excluir</button>
+              <button [routerLink]="['/pages/edicao-produtos', p.id]" class="btn btn-primary btn-sm me-1">
+                Alterar
+              </button>
+              <button (click)="onDelete(p.id)" class="btn btn-danger btn-sm">
+                Excluir
+              </button>
             </td>
           </tr>
         </tbody>
