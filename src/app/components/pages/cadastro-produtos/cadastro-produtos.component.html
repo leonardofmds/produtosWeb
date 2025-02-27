@@ -11,25 +11,36 @@
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
         <div class="mb-3">
-          
+
           <label for="nome" class="form-label">Nome</label>
-          <input formControlName="nome" type="text" class="form-control" id="nome" placeholder="Digite o nome do produto">
+          <input type="text" formControlName="nome" class="form-control" id="nome" placeholder="Digite o nome do produto">
           
           <span class="text-danger" *ngIf="f['nome'].touched && f['nome'].invalid">
-            <span *ngIf="f['nome']?.hasError('required')">Por favor informe o nome do produto</span>
-            <span *ngIf="f['nome']?.hasError('minlength')">Por favor informe o nome do produto com pelo menos 8 caracteres</span>
-            <span *ngIf="f['nome']?.hasError('maxlength')">Por favor informe o nome do produto com no máximo 100 caracteres</span>
+            <span *ngIf="f['nome']?.hasError('required')">  
+              Por favor, informe o nome do produto.
+            </span>
+            <span *ngIf="f['nome']?.hasError('minlength')">  
+              Por favor, informe o nome do produto com pelo menos 8 caracteres.
+            </span>
+            <span *ngIf="f['nome']?.hasError('maxlength')">  
+              Por favor, informe o nome do produto com no máximo 100 caracteres.
+            </span>
           </span>
-
+       
         </div>
 
         <div class="mb-3">
-          <label for="preco" class="form-label">Preço</label>
-          <input formControlName="preco" type="number" class="form-control" id="preco" placeholder="Digite o preço">
 
-          <span class="text-danger" *ngIf="f['preco'].touched && f['preco'].invalid"> 
-          <span *ngIf="f['preco']?.hasError('required')">Por favor informe o preço do produto</span>
-          <span *ngIf="f['preco']?.hasError('min')">O valor minimo do preço do produto é 0.01 </span>
+          <label for="preco" class="form-label">Preço</label>
+          <input type="number" formControlName="preco" class="form-control" id="preco" placeholder="Digite o preço">
+        
+          <span class="text-danger" *ngIf="f['preco'].touched && f['preco'].invalid">
+            <span *ngIf="f['preco']?.hasError('required')">  
+              Por favor, informe o preço do produto.
+            </span>
+            <span *ngIf="f['preco']?.hasError('min')">  
+              Por favor, informe um preço com valor mínimo de '0.01'.
+            </span>
           </span>
 
         </div>
@@ -37,32 +48,46 @@
         <div class="mb-3">
 
           <label for="quantidade" class="form-label">Quantidade</label>
-          <input formControlName="quantidade" type="number" class="form-control" id="quantidade" placeholder="Digite a quantidade">
+          <input type="number" formControlName="quantidade" class="form-control" id="quantidade" placeholder="Digite a quantidade">
+        
+          <span class="text-danger" *ngIf="f['quantidade'].touched && f['quantidade'].invalid">
+            <span *ngIf="f['quantidade']?.hasError('required')">  
+              Por favor, informe a quantidade do produto.
+            </span>
+            <span *ngIf="f['quantidade']?.hasError('min')">  
+              Por favor, informe a quantidade com valor mínimo de '0'.
+            </span>
+          </span>
 
-          <span class="text-danger" *ngIf="f['quantidade'].touched && f['quantidade'].invalid"> 
-          <span *ngIf="f['quantidade']?.hasError('required')">Por favor informe a quantidade do produto</span>
-          <span *ngIf="f['quantidade']?.hasError('min')">A quantidade minima que deve ser informada é 0 </span>
+        </div>
+       
+        <div class="mb-3">
+
+          <label for="categoria" class="form-label">Categoria</label>
+          <select class="form-select" formControlName="categoriaId" id="categoria">
+            
+            <option value="">Escolha uma opção</option>
+
+            <option *ngFor="let c of categorias" value="{{ c.id }}">
+              {{ c.nome }}
+            </option>
+
+          </select>
+
+          <span class="text-danger" *ngIf="f['categoriaId'].touched && f['categoriaId'].invalid">
+            <span *ngIf="f['categoriaId']?.hasError('required')">  
+              Por favor, selecione a categoria do produto.
+            </span>
           </span>
 
         </div>
 
-        <div class="mb-3">
-          <label for="categoria" class="form-label">Categoria</label>
-          <select formControlName="categoriaId" class="form-select" id="categoria">
-            <option value="">Escolha uma opção</option>
-            <option *ngFor="let cat of categorias" value="{{cat.id}}">
-              {{cat.nome}}
-            </option>
-          </select>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+          Cadastrar
+        </button>
 
-          <span class="text-danger" *ngIf="f['categoriaId'].touched && f['categoriaId'].invalid"> 
-            <span *ngIf="f['categoriaId']?.hasError('required')">Por favor informe a categoria</span>
-            </span>
-
-
-        </div>
-        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Cadastrar</button>
       </form>
+
     </div>
   </div>
   
