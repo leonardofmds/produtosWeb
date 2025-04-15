@@ -1,59 +1,51 @@
-# ProdutosWeb
+# produtosWeb
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
+`produtosWeb` é uma aplicação frontend desenvolvida com **Angular**, criada para consumir APIs de **produtos** e **usuários** construídas com **Java**. O projeto utiliza **componentes reutilizáveis**, **formulários reativos**, **navegação por rotas**, **interceptadores**, **guards de rotas**, **gráficos com Highcharts**, além do framework **Bootstrap** para estilização responsiva.
 
-## Development server
+## 🚀 Funcionalidades
 
-To start a local development server, run:
+- Cadastro, edição e visualização de produtos
+- Autenticação de usuários
+- Navegação protegida por autenticação (guards)
+- Dashboard com gráficos dinâmicos
+- Comunicação com APIs externas via HTTP
+- Interface responsiva com Bootstrap
 
-```bash
-ng serve
-```
+## 🧱 Tecnologias Utilizadas
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### ✅ Angular
+Framework para construção de SPAs (Single Page Applications). Utilizado para a criação de toda a estrutura do frontend, com suporte a módulos, componentes, serviços e injeção de dependência.
 
-## Code scaffolding
+### ✅ Componentes
+Reutilização de trechos de UI de forma isolada e testável. Cada funcionalidade ou página da aplicação está representada em um componente Angular.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### ✅ Rotas (RouterModule)
+Permite navegação entre diferentes views da aplicação, usando o sistema de rotas do Angular. Cada rota está vinculada a um componente.
 
-```bash
-ng generate component component-name
-```
+### ✅ Formulários Reativos (ReactiveFormsModule)
+Utilizados para criar e controlar formulários de forma dinâmica e programática, com validações e manipulação de estados via código.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### ✅ HttpClient
+Cliente HTTP embutido no Angular que permite consumir APIs RESTful com suporte a interceptadores, headers, parâmetros, etc.
 
-```bash
-ng generate --help
-```
+### ✅ Interceptors
+Interceptadores de requisições HTTP utilizados para adicionar tokens de autenticação ou tratar erros globalmente.
 
-## Building
+### ✅ Guards
+Protetores de rota que controlam o acesso a determinadas páginas, garantindo que apenas usuários autenticados possam acessá-las.
 
-To build the project run:
+### ✅ Highcharts
+Biblioteca JavaScript de gráficos interativos. Utilizada na construção de dashboards visuais com informações extraídas das APIs.
 
-```bash
-ng build
-```
+### ✅ Bootstrap
+Framework CSS utilizado para criar uma interface responsiva, moderna e com componentes visuais prontos para uso.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 🌐 Integração com APIs Java
 
-## Running unit tests
+Este frontend Angular consome duas APIs backend desenvolvidas com **Java** e **Spring Boot**:
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- ✅ **API de Produtos** – Gerencia o cadastro, atualização, remoção e listagem de produtos
+- ✅ **API de Usuários** – Responsável pelo registro, autenticação e controle de acesso de usuários
 
-```bash
-ng test
-```
 
-## Running end-to-end tests
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
