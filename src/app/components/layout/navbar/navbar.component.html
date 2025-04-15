@@ -7,8 +7,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                <li *ngIf="!usuario" class="nav-item">
+                    <a class="nav-link active" routerLink="/pages/autenticar-usuario">
+                        Autenticar usuário
+                    </a>
+                </li>
+                <li *ngIf="!usuario" class="nav-item">
+                    <a class="nav-link active" routerLink="/pages/criar-usuario">
+                        Criar conta de usuário
+                    </a>
+                </li>
+                <li *ngIf="usuario" class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Gerenciar produtos
                     </a>
@@ -20,5 +30,16 @@
                 </li>
             </ul>
         </div>
+        <div *ngIf="usuario" class="d-flex align-items-center text-white">
+            <div class="me-3 text-end">
+                <div><strong>{{ usuario.nome }}</strong>&nbsp;<span class="badge bg-secondary">{{ usuario.perfil }}</span> </div>                
+                <div style="margin-top: -4px">{{ usuario.email }}</div>
+            </div>
+            <button class="btn btn-outline-light btn-sm ms-3 me-3" (click)="logout()">
+                Sair do sistema
+            </button>
+        </div>
     </div>
 </nav>
+
+
