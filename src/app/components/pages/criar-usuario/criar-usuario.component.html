@@ -1,0 +1,78 @@
+<div class="d-flex align-items-center justify-content-center mt-5 bg-light">
+    <div class="card shadow p-4" style="width: 360px;">
+        <h3 class="text-center">Cadastro de usuário</h3>
+        <p>Entre com seus dados para criar uma conta de usuário</p>
+        <hr/>
+
+        <div *ngIf="mensagemErro" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong> {{ mensagemErro }} </strong>
+            <button (click)="mensagemErro = ''" type="button" class="btn-close" aria-label="Close"></button>
+          </div>
+          <div *ngIf="mensagemSucesso" class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong> {{ mensagemSucesso }} </strong>
+            <button (click)="mensagemSucesso = ''" type="button" class="btn-close" aria-label="Close"></button>
+          </div>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <div class="mb-3 mt-3">
+                <label for="nome" class="form-label">Email</label>
+                <input formControlName="nome" type="text" class="form-control" id="nome" placeholder="Digite seu nome" required>
+
+                <div *ngIf="f['nome'].touched && f['nome'].invalid" class="text-danger">
+                    <span *ngIf="f['email']?.hasError('required')">  
+                        Por favor, informe o nome.
+                    </span>
+                    <span *ngIf="f['nome']?.hasError('minlength')">  
+                        Por favor, informe pelo menos 8 caracteres.
+                    </span>
+                </div>
+            </div>
+
+            <div class="mb-3 mt-3">
+                <label for="email" class="form-label">Email</label>
+                <input formControlName="email" type="email" class="form-control" id="email" placeholder="Digite seu email" required>
+
+                <div *ngIf="f['email'].touched && f['email'].invalid" class="text-danger">
+                    <span *ngIf="f['email']?.hasError('required')">  
+                        Por favor, informe o email.
+                    </span>
+                    <span *ngIf="f['email']?.hasError('email')">  
+                        Por favor, informe um email válido.
+                    </span>
+                </div>
+
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Senha</label>
+                <input formControlName="senha" type="password" class="form-control" id="password" placeholder="Digite sua senha" required>
+
+                <div *ngIf="f['senha'].touched && f['senha'].invalid" class="text-danger">
+                    <span *ngIf="f['senha']?.hasError('required')">  
+                        Por favor, informe a senha
+                    </span>
+                    <span *ngIf="f['senha']?.hasError('pattern')">  
+                        A senha deve ter no mínimo 8 caracteres, contendo letras minusculas, maicusculas, números e caracteres especiais.
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Confirmar senha</label>
+                <input formControlName="senhaConfirmacao" type="password" class="form-control" id="senhaConfirmacao" placeholder="Confirme sua senha" required>
+
+                <div *ngIf="f['senhaConfirmacao'].touched && f['senhaConfirmacao'].invalid" class="text-danger">
+                    <span *ngIf="f['senhaConfirmacao']?.hasError('required')">  
+                        Por favor, confirme a senha
+                    </span>
+                </div>
+
+            </div>
+
+
+            <button [disabled]="form.invalid" type="submit" class="btn btn-primary w-100">Entrar</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</div>
