@@ -1,13 +1,17 @@
 //endereço da API local
-const apiUrl = "http://localhost:8081";
+export const apiProdutos = "http://localhost:8081";
+export const apiUsuarios = 'http://localhost:8082';
 
 //mapeamento dos endpoints
 export const endpoints = {
-    cadastrar_produto : `${apiUrl}/api/produtos/cadastrar`,
-    atualizar_produto : `${apiUrl}/api/produtos/atualizar`,
-    excluir_produto : `${apiUrl}/api/produtos/excluir`,
-    consultar_produtos : `${apiUrl}/api/produtos/consultarPorNome`,
-    obter_produto : `${apiUrl}/api/produtos/consultarPorId`,
-    consultar_categorias : `${apiUrl}/api/categorias/consultar`,
-    dashboard: `${apiUrl}/api/dashboard/totalProdutosPorCategoria`
+    cadastrar_produto : `${apiProdutos}/api/produtos/cadastrar`,
+    atualizar_produto : `${apiProdutos}/api/produtos/atualizar`,
+    excluir_produto : `${apiProdutos}/api/produtos/excluir`,
+    consultar_produtos : `${apiProdutos}/api/produtos/consultarPorNome`,
+    obter_produto : `${apiProdutos}/api/produtos/consultarPorId`,
+    consultar_categorias : `${apiProdutos}/api/categorias/consultar`,
+    dashboard: `${apiProdutos}/api/dashboard/totalProdutosPorCategoria`,
+
+    criar_usuario: `${apiUsuarios}/api/usuario/criar`,
+    autenticar_usuario: `${apiUsuarios}/api/usuario/autenticar`
 };
